@@ -7,7 +7,7 @@ const Navbar = () => {
             {/* navbar 1stpart */}
             <div className="flex justify-around mt-4 items-center">
                 <div className="w-1/4">
-                    <img className="h-16 w-full" src="../../public/bookStoreLogo.jpg" alt="logo" />
+                    <img className="h-16 w-full" src="./bookStoreLogo.jpg" alt="logo" />
                 </div>
                 <div className="1/4 hidden md:flex">
                     <div className="w-full">
@@ -23,7 +23,7 @@ const Navbar = () => {
                     isActive ? "text-white bg-green-700 p-1 rounded-lg" : ""}>
                     Home        
                 </NavLink>
-                <NavLink to="addbook" className={({ isActive, isPending }) =>
+                <NavLink to="/addbook" className={({ isActive, isPending }) =>
                     isPending ? "pending" : 
                     isActive ? "text-white bg-green-700 p-1 rounded-lg" : ""}>
                      Add Book
