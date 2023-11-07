@@ -7,7 +7,7 @@ const Navbar = () => {
             {/* navbar 1stpart */}
             <div className="flex justify-around mt-4 items-center">
                 <div className="w-1/4">
-                    <img className="h-16 w-full" src="./bookStoreLogo.jpg" alt="logo" />
+                    <img className="h-16 w-full" src="https://i.ibb.co/fS8244y/book-Store-Logo.png" alt="logo" />
                 </div>
                 <div className="1/4 hidden md:flex">
                     <div className="w-full">

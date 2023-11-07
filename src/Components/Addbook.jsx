@@ -1,4 +1,5 @@
 
+import swal from "sweetalert";
 import Navbar from "../Components/Navbar";
 
 
@@ -16,6 +17,23 @@ const AddBook = () => {
         const rating = form.get('rating')
         const book={name, photo, authorname, category, quantity, description, rating};
         console.log(book)
+
+        fetch('http://localhost:5000/addbook', {
+            method:'POST',
+            headers:{
+                'content-type':'application/json'
+            },
+            body:JSON.stringify(book)
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            // console.log(data)
+            if(data.insertedId){
+                swal("Product has been added successfully")          
+            }
+            
+        })
+        e.currentTarget.reset();
 
     }
     return (
