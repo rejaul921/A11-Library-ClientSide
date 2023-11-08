@@ -10,6 +10,7 @@ import Login from "../Components/LoginPage";
 import Register from "../Components/RegisterPage";
 import PrivateRoute from "../Components/PrivateRoute";
 import UpdateBook from "../Components/UpdateBook";
+import BorrowedBooks from "../Components/BorrowedBooks";
 
 
 const Router = createBrowserRouter([
@@ -38,6 +39,10 @@ const Router = createBrowserRouter([
             {
                 path:"/login",
                 element:<Login></Login>
+            },
+            {
+                path:"/borrowed",
+                element:<PrivateRoute><BorrowedBooks></BorrowedBooks></PrivateRoute>
             },
             {
                 path:"/register",

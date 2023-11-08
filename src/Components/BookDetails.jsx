@@ -40,8 +40,8 @@ const BookDetails = () => {
         const borrowedBook={...bookWithEmail, formattedBorrowedDate, formattedReturnDate,quantity}
         console.log(borrowedBook);
         // adding to borrowed list
-        const myBorrowedBook=e=>{
-            e.preventDefault();
+        const myBorrowedBook=()=>{
+            // e.preventDefault();
             fetch('http://localhost:5000/addBorrowedBook',{
                 method:'POST',
                 headers:{
@@ -63,8 +63,8 @@ const BookDetails = () => {
         console.log(book)
         delete book.quantity
         const bookWithNewQuantity={...book, quantity}
-        const handleUpdate=e=>{
-            e.preventDefault();
+        const handleUpdate=()=>{
+            // e.preventDefault();
             fetch(`http://localhost:5000/updatebook/${_id}`,{
                 method:'PUT',
                 headers:{
