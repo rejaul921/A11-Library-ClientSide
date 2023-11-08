@@ -1,18 +1,43 @@
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { AuthContext } from "../Provider/AuthProvider";
 
 
 const Navbar = () => {
+    const{user, logOut}=useContext(AuthContext);
+    const SignOut=()=>{
+        logOut()
+        .then()
+        .catch()
+    }
     return (
         <div className="mx-auto">
             {/* navbar 1stpart */}
-            <div className="flex justify-around mt-4 items-center">
+            <div className="flex justify-around mt-4 font-bold items-center">
                 <div className="w-1/4">
                     <img className="h-16 w-full" src="https://i.ibb.co/fS8244y/book-Store-Logo.png" alt="logo" />
                 </div>
-                <div className="1/4 hidden md:flex">
+                <div className="1/4 hidden lg:flex">
                     <div className="w-full">
                     <p className="shadow-xl"> <input className="p-2" type="text" placeholder="Category Name" />       <button className="text-white font-bold bg-green-700 p-2">Search</button> </p>
                     </div>
+                </div>
+                <div>
+                    {
+                        user? <div className=''>
+                            <div className='flex items-center text-center gap-1'>
+                                <button onClick={SignOut} className=' bg-green-700 p-1 text-white rounded-lg '>Logout</button>
+                                <img className='rounded-full w-8 h-8' src={user.photoURL} alt="" />
+                                <p>{user.displayName}</p>
+                            </div>             
+                        </div>
+                    :
+                    <NavLink to="/login" className={({ isActive, isPending }) =>
+                        isPending ? "pending" : 
+                        isActive ? "text-white bg-green-700 p-1 rounded-lg font-bold" : ""}>
+                     Login
+                     </NavLink>
+                    }
                 </div>
             </div>
 
@@ -38,11 +63,9 @@ const Navbar = () => {
                     isActive ? "text-white bg-green-700 p-1 rounded-lg" : ""}> 
                 Borrowed Book
                 </NavLink>
-                <NavLink to="/login" className={({ isActive, isPending }) =>
-                    isPending ? "pending" : 
-                    isActive ? "text-white bg-green-700 p-1 rounded-lg" : ""}>
-                     Login
-                     </NavLink>
+
+                
+                
             </div>
         </div>
     );

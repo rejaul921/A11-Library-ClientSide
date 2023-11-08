@@ -1,4 +1,5 @@
 import Rating from 'react-rating-stars-component';
+import { Link } from 'react-router-dom';
 
 const Book = ({ book }) => {
     console.log(book)
@@ -26,7 +27,9 @@ const Book = ({ book }) => {
             ></Rating>
             </div>
             
+            <Link to={`/updatebook/${_id}`}>
             <button className="text-white p-1 mb-3 bg-green-700 font-bold rounded-lg">Update</button>
+            </Link>
         </div>
     );
 };
