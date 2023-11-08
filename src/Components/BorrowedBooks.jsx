@@ -2,12 +2,21 @@ import { useContext, useEffect, useState } from "react";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 import { AuthContext } from "../Provider/AuthProvider";
+import swal from "sweetalert";
 
 
 const BorrowedBooks = () => {
     const[borrowedBooks, setBorrowedBooks]=useState([]);
     const[myBorrowedBooks, setMyBorrowedBooks]=useState([]);
+    const[allBooks, setAllBooks]=useState([]);
     const{user}=useContext(AuthContext);
+
+    useEffect(()=>{
+        fetch('http://localhost:5000/allbook')
+        .then((res)=>res.json())
+        .then((data)=>setAllBooks(data))
+    },[])
+    
 
     useEffect(()=>{
         fetch('http://localhost:5000/borrowed')
@@ -19,6 +28,48 @@ const BorrowedBooks = () => {
         const findMyBooks=borrowedBooks.filter(book=>book.email==user.email)
         setMyBorrowedBooks(findMyBooks)
     },[borrowedBooks,user.email])
+
+
+    const handleRemove=(_id,name)=>{
+        // console.log('delete',_id)
+        console.log(_id,name)
+        fetch(`http://localhost:5000/myBorrowed/${_id}`,{
+            method:'DELETE'
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            // console.log(data)
+            if(data.deletedCount>0){
+                swal("Returned successfully")
+                const remaining = myBorrowedBooks.filter(cartBook=>cartBook._id !== _id);
+                setMyBorrowedBooks(remaining)
+
+            }
+        })
+        const findReturnedBook=allBooks.find(book=>book.name==name)
+        console.log(findReturnedBook);
+        const findBookQunantity=findReturnedBook.quantity
+        console.log(findBookQunantity)
+        const quantity=parseInt(findBookQunantity)+1;
+        delete findReturnedBook.quantity;
+        const bookWithNewQuantity={...findReturnedBook,quantity}
+        console.log(bookWithNewQuantity);
+        const handleUpdate=()=>{
+            // e.preventDefault();
+            fetch(`http://localhost:5000/updatebook/${bookWithNewQuantity._id}`,{
+                method:'PUT',
+                headers:{
+                    'content-type':'application/json'
+                },
+                body:JSON.stringify(bookWithNewQuantity)
+            })
+            .then(res=>res.json())
+            .then(data=>{
+                console.log(data)
+        })
+        }
+        handleUpdate();
+    }
 
     return (
         <div className="mx-auto text-center">
@@ -42,7 +93,7 @@ const BorrowedBooks = () => {
                                     <p className="text-slate-500 font-semibold">Return Date: {book.formattedReturnDate}</p>
                                   </div>
                                   <div className="p-1 ml-4 bg-red-800 rounded-xl text-white font-bold">
-                                      <button>Remove</button>
+                                      <button onClick={()=>handleRemove(book._id,book.name)}>Return</button>
                                   </div>
                           </div>
                       </div>)
