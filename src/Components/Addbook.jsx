@@ -1,6 +1,7 @@
 
 import swal from "sweetalert";
 import Navbar from "../Components/Navbar";
+import Footer from "./Footer";
 
 
 const AddBook = () => {
@@ -96,6 +97,7 @@ const AddBook = () => {
                     </div>
                 </form>
             </div>
+            <Footer></Footer>
         </div>
     );
 };

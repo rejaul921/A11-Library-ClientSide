@@ -88,7 +88,7 @@ const BorrowedBooks = () => {
                               <div className="w-32 h-28"><img className="w-full h-full p-2 rounded-xl" src={book.photo} alt="" /></div>
                               <div className="flex justify-around items-center">
                                   <div>
-                                    <p className="text-xl font-bold">Name: {book.name}</p>
+                                    <p className="text-xl font-bold"> {book.name}</p>
                                     <p className="text-slate-500 text-sm">Category: {book.category}</p>
                                     <p className="text-slate-500 font-semibold">Borrowed Date: {book.formattedBorrowedDate}</p>
                                     <p className="text-slate-500 font-semibold">Return Date: {book.formattedReturnDate}</p>

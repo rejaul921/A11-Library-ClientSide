@@ -1,5 +1,7 @@
 import { useLoaderData, useParams } from "react-router-dom";
 import swal from "sweetalert";
+import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 const UpdateBook = () => {
     const {_id}=useParams();
@@ -38,7 +40,8 @@ const UpdateBook = () => {
     }
 
     return (
-        <div>          
+        <div> 
+            <Navbar></Navbar>         
             <div className="text-center">
                 <h2 className="text-3xl text-center font-bold my-5">Update the book</h2>
                 <form onSubmit={handleUpdate} className="my-10 grid grid-cols-2 gap-3 md:w-11/12 lg:w-3/4 mx-auto">
@@ -89,6 +92,7 @@ const UpdateBook = () => {
                     </div>
                 </form>
             </div>
+            <Footer></Footer>
         </div>
     );
 };

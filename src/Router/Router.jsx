@@ -11,6 +11,7 @@ import Register from "../Components/RegisterPage";
 import PrivateRoute from "../Components/PrivateRoute";
 import UpdateBook from "../Components/UpdateBook";
 import BorrowedBooks from "../Components/BorrowedBooks";
+import Readmore from "../Components/Readmore";
 
 
 const Router = createBrowserRouter([
@@ -56,6 +57,11 @@ const Router = createBrowserRouter([
                 path:"/bookdetails/:_id",
                 element:<PrivateRoute><BookDetails></BookDetails></PrivateRoute>,
                 loader:({params})=>fetch(`http://localhost:5000/bookdetails/${params._id}`)
+            },
+            {
+                path:"/readmore/:_id",
+                element:<PrivateRoute><Readmore></Readmore></PrivateRoute>,
+                loader:({params})=>fetch(`http://localhost:5000/readmore/${params._id}`)  
             }
         ]
     }

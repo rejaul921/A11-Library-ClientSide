@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import Rating from 'react-rating-stars-component';
 import Navbar from "./Navbar";
 import Footer from "./Footer";
@@ -44,6 +44,10 @@ const BookDetails = () => {
 
     const handleBorrowBook = e => {
         e.preventDefault();
+        if (!returnDate) {
+            swal("Please enter a valid return date.");
+            return;
+        }
         const currentDate= new Date();
         const formattedBorrowedDate=formatDate(currentDate);
         setBorrowedDate(formattedBorrowedDate)
@@ -118,7 +122,7 @@ const BookDetails = () => {
                         </Rating>
                     </div>
                     <div>
-                        <button className="text-white p-1 mr-6 mb-3 bg-green-700 font-bold rounded-lg" onClick={() => document.getElementById('my_modal_5').showModal()}
+                        <button className={`text-white p-1 mr-6 mb-3 ${findTheBook || book.quantity == 0 ? 'bg-gray-400' : 'bg-green-700'} font-bold rounded-lg`} onClick={() => document.getElementById('my_modal_5').showModal()}
                         disabled={findTheBook || book.quantity == 0}>Borrow</button>
                         {/* modal */}
                         <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
@@ -157,7 +161,7 @@ const BookDetails = () => {
                             </div>
                         </dialog>
 
-                        <button className="text-white p-1 mb-3 bg-green-700 font-bold rounded-lg">Read about book</button>
+                        <Link to={`/readmore/${_id}`}><button className="text-white p-1 mb-3 bg-green-700 font-bold rounded-lg">Read about book</button></Link>
                     </div>
                 </div>
             </div>
