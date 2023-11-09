@@ -5,11 +5,14 @@ import Footer from "./Footer";
 import { useContext, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import swal from "sweetalert";
+import { useEffect } from "react";
 
 const BookDetails = () => {
     const { user } = useContext(AuthContext)
     const[returnDate, setReturnDate]=useState("")
     const [borrowedDate, setBorrowedDate] = useState("");
+    const[borrowedBooks, setBorrowedBooks]=useState([]);
+    const[myBorrowedBooks, setMyBorrowedBooks]=useState([]);
 
     const formatDate =(dateString)=>{
         const options = { year: 'numeric', month: 'short', day: 'numeric' };
@@ -23,6 +26,21 @@ const BookDetails = () => {
     const bookWithEmail = { ...book, email };
     delete bookWithEmail._id;
     console.log(bookWithEmail);
+    // loading already borrowed books
+    useEffect(()=>{
+        fetch('http://localhost:5000/borrowed')
+        .then(res=>res.json())
+        .then(data=>setBorrowedBooks(data));
+    },[])
+
+    useEffect(()=>{
+        const findMyBooks=borrowedBooks.filter(book=>book.email==user.email)
+        setMyBorrowedBooks(findMyBooks)
+    },[borrowedBooks,user.email])
+
+    // now checking if book is borrowed
+    const findTheBook=myBorrowedBooks.find(findBook=>findBook.name==book.name);
+    console.log(findTheBook);
 
     const handleBorrowBook = e => {
         e.preventDefault();
@@ -100,7 +118,8 @@ const BookDetails = () => {
                         </Rating>
                     </div>
                     <div>
-                        <button className="text-white p-1 mr-6 mb-3 bg-green-700 font-bold rounded-lg" onClick={() => document.getElementById('my_modal_5').showModal()}>Borrow</button>
+                        <button className="text-white p-1 mr-6 mb-3 bg-green-700 font-bold rounded-lg" onClick={() => document.getElementById('my_modal_5').showModal()}
+                        disabled={findTheBook || book.quantity == 0}>Borrow</button>
                         {/* modal */}
                         <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
                             <div className="modal-box">

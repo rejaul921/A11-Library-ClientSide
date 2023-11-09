@@ -28,7 +28,10 @@ const Book = ({ book }) => {
             </div>
             
             <Link to={`/updatebook/${_id}`}>
-            <button className="text-white p-1 mb-3 bg-green-700 font-bold rounded-lg">Update</button>
+            <button className="text-white p-1 mb-3 mr-1 bg-green-700 font-bold rounded-lg">Update</button>
+            </Link>
+            <Link to={`/bookdetails/${_id}`}>
+            <button className="text-white p-1 mb-3 ml-1 bg-green-700 font-bold rounded-lg">Details</button>
             </Link>
         </div>
     );

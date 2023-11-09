@@ -46,6 +46,7 @@ const BorrowedBooks = () => {
 
             }
         })
+        // looking which book is returned
         const findReturnedBook=allBooks.find(book=>book.name==name)
         console.log(findReturnedBook);
         const findBookQunantity=findReturnedBook.quantity
