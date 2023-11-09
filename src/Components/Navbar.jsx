@@ -4,18 +4,23 @@ import { AuthContext } from "../Provider/AuthProvider";
 
 
 const Navbar = () => {
-    const{user, logOut}=useContext(AuthContext);
+    const{user, logOut, dark, handleToggle}=useContext(AuthContext);
     const SignOut=()=>{
         logOut()
         .then()
         .catch()
     }
     return (
-        <div className="mx-auto">
+        <div className={`${dark?'bg-slate-500':''}`}>
             {/* navbar 1stpart */}
             <div className="flex justify-around mt-4 font-bold items-center">
                 <div className="w-1/4">
                     <img className="h-16 w-full" src="https://i.ibb.co/fS8244y/book-Store-Logo.png" alt="logo" />
+                </div>
+                <div>
+                <button onClick={handleToggle} className="bg-green-700 text-white px-4 py-2 text-center mx-auto font-bold rounded-lg mb-4">
+                    {dark ? 'Light' : 'Dark'}
+                </button>
                 </div>
                 <div className="1/4 hidden lg:flex">
                     <div className="w-full">

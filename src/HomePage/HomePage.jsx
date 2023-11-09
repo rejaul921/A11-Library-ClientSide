@@ -1,19 +1,21 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Banner from "../Components/Banner";
 import Footer from "../Components/Footer";
 import Navbar from "../Components/Navbar";
 import Category from "../Components/Category";
+import { AuthContext } from "../Provider/AuthProvider";
 
 
 const HomePage = () => {
     const[categories,setCategory]=useState([]);
+    const{dark}=useContext(AuthContext);
     useEffect(()=>{
         fetch(`http://localhost:5000/categories`)
         .then(res=>res.json())
         .then(data=>setCategory(data))
     },[])
     return (
-        <div>
+        <div className={`${dark?'bg-slate-500':''}`}>
             <Navbar></Navbar>
             <Banner></Banner>
 

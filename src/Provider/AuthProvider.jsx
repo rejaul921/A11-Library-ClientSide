@@ -7,6 +7,11 @@ const auth= getAuth(app)
 const AuthProvider = ({children}) => {
     const [user,setUser]=useState(null)
     const[loading, setLoading]=useState(true)
+    const [dark, setDark] = useState(false);
+
+    const handleToggle = () => {
+        setDark(!dark);
+    };
 
     const createUser= async (email, password, name, photo)=>{
         setLoading(true);
@@ -53,7 +58,7 @@ const AuthProvider = ({children}) => {
     },[])
 
     const authInfo={
-        user,createUser,logOut,Login,GoogleSignin,loading
+        user,createUser,logOut,Login,GoogleSignin,loading,dark,handleToggle
     }
 
     return (
