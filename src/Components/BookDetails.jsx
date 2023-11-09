@@ -28,7 +28,7 @@ const BookDetails = () => {
     console.log(bookWithEmail);
     // loading already borrowed books
     useEffect(()=>{
-        fetch('http://localhost:5000/borrowed')
+        fetch('https://library-server-six.vercel.app/borrowed')
         .then(res=>res.json())
         .then(data=>setBorrowedBooks(data));
     },[])
@@ -64,7 +64,7 @@ const BookDetails = () => {
         // adding to borrowed list
         const myBorrowedBook=()=>{
             // e.preventDefault();
-            fetch('http://localhost:5000/addBorrowedBook',{
+            fetch('https://library-server-six.vercel.app/addBorrowedBook',{
                 method:'POST',
                 headers:{
                     'content-type':'application/json'
@@ -87,7 +87,7 @@ const BookDetails = () => {
         const bookWithNewQuantity={...book, quantity}
         const handleUpdate=()=>{
             // e.preventDefault();
-            fetch(`http://localhost:5000/updatebook/${_id}`,{
+            fetch(`https://library-server-six.vercel.app/updatebook/${_id}`,{
                 method:'PUT',
                 headers:{
                     'content-type':'application/json'

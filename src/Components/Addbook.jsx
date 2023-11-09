@@ -19,7 +19,7 @@ const AddBook = () => {
         const book={name, photo, authorname, category, quantity, description, rating};
         console.log(book)
 
-        fetch('http://localhost:5000/addbook', {
+        fetch('https://library-server-six.vercel.app/addbook', {
             method:'POST',
             headers:{
                 'content-type':'application/json'

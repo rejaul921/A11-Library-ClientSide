@@ -10,7 +10,7 @@ const CategoryBooks = () => {
     const {name}=useParams();
 
     useEffect(()=>{
-        fetch(`http://localhost:5000/categories/${name}`)
+        fetch(`https://library-server-six.vercel.app/categories/${name}`)
         .then(res=>res.json())
         .then(data=>setCategoryBooks(data))
 

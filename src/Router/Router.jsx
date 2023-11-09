@@ -35,7 +35,7 @@ const Router = createBrowserRouter([
             {
                 path:"/updatebook/:_id",
                 element:<PrivateRoute><UpdateBook></UpdateBook></PrivateRoute>,
-                loader:({params})=>fetch(`http://localhost:5000/updatebook/${params._id}`)
+                loader:({params})=>fetch(`https://library-server-six.vercel.app/updatebook/${params._id}`)
             },
             {
                 path:"/login",
@@ -56,12 +56,12 @@ const Router = createBrowserRouter([
             {
                 path:"/bookdetails/:_id",
                 element:<PrivateRoute><BookDetails></BookDetails></PrivateRoute>,
-                loader:({params})=>fetch(`http://localhost:5000/bookdetails/${params._id}`)
+                loader:({params})=>fetch(`https://library-server-six.vercel.app/bookdetails/${params._id}`)
             },
             {
                 path:"/readmore/:_id",
                 element:<PrivateRoute><Readmore></Readmore></PrivateRoute>,
-                loader:({params})=>fetch(`http://localhost:5000/readmore/${params._id}`)  
+                loader:({params})=>fetch(`https://library-server-six.vercel.app/readmore/${params._id}`)  
             }
         ]
     }

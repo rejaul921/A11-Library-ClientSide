@@ -10,7 +10,7 @@ const HomePage = () => {
     const[categories,setCategory]=useState([]);
     const{dark}=useContext(AuthContext);
     useEffect(()=>{
-        fetch(`http://localhost:5000/categories`)
+        fetch(`https://library-server-six.vercel.app/categories`)
         .then(res=>res.json())
         .then(data=>setCategory(data))
     },[])

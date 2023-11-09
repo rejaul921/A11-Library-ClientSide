@@ -12,14 +12,14 @@ const BorrowedBooks = () => {
     const{user}=useContext(AuthContext);
 
     useEffect(()=>{
-        fetch('http://localhost:5000/allbook')
+        fetch('https://library-server-six.vercel.app/allbook')
         .then((res)=>res.json())
         .then((data)=>setAllBooks(data))
     },[])
     
 
     useEffect(()=>{
-        fetch('http://localhost:5000/borrowed')
+        fetch('https://library-server-six.vercel.app/borrowed')
         .then(res=>res.json())
         .then(data=>setBorrowedBooks(data));
     },[])
@@ -33,7 +33,7 @@ const BorrowedBooks = () => {
     const handleRemove=(_id,name)=>{
         // console.log('delete',_id)
         console.log(_id,name)
-        fetch(`http://localhost:5000/myBorrowed/${_id}`,{
+        fetch(`https://library-server-six.vercel.app/myBorrowed/${_id}`,{
             method:'DELETE'
         })
         .then(res=>res.json())
@@ -57,7 +57,7 @@ const BorrowedBooks = () => {
         console.log(bookWithNewQuantity);
         const handleUpdate=()=>{
             // e.preventDefault();
-            fetch(`http://localhost:5000/updatebook/${bookWithNewQuantity._id}`,{
+            fetch(`https://library-server-six.vercel.app/updatebook/${bookWithNewQuantity._id}`,{
                 method:'PUT',
                 headers:{
                     'content-type':'application/json'

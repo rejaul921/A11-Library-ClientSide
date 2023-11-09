@@ -9,7 +9,7 @@ const Allbooks = () => {
     const [showAvailable, setShowAvailable] = useState(false);
     
     useEffect(()=>{
-        fetch('http://localhost:5000/allbook')
+        fetch('https://library-server-six.vercel.app/allbook')
         .then(res=>res.json())
         .then(data=>setAllBooks(data))
     },[])

@@ -1,8 +1,17 @@
-# React + Vite
+# Wellcome to the Library Management Website
+This is a prototype website for library management. It will be updated by reqular basis to stay with modern technology.
+The website is developed and focused to give smooth experience to the user.
+# The Key Features of the website are
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- Smooth routing and browsing experience to user as react router is used in the projects.
+- Users can easiy borrow a book from library and returned.
+- Users need to provide a return date for borrowing a book.
+- Borrowed user data saved in database for tracking the book when is borrowed.
+- when a borrow or return a book that time instantly updating book quantity in database
+- Only Authenticated users borrow book.
+- users can borrow multiple book but can not borrow same book twice
 
-Currently, two official plugins are available:
+# Many more features will be added soon
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+- [check the live website click](https://library-management-4b8f8.web.app/) 
